@@ -41,8 +41,6 @@ export class PostSchema extends Typegoose {
       foreignField: '_id',
       as: 'authorId'
     }
-
-    //console.log('staticMethod__FILTER', filter,'pageNum',pageNum,'perPage',perPage)
     if (filter) {
       const ObjectId = mongoose.Types.ObjectId;
       if (filter.hasOwnProperty('fullName') && filter.fullName && !validator.isEmpty(filter.fullName)) {
@@ -87,7 +85,6 @@ export class PostSchema extends Typegoose {
       { $skip: (pageNum - 1) * perPage },
       { $limit: perPage }
     ]);
-    console.log('staticMethod__FILTER', filter, 'QUERY', query, 'F', f)
 
     // log('====================================');
     // log(JSON.stringify(f, null, 5));

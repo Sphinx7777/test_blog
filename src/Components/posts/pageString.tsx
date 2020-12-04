@@ -10,9 +10,6 @@ interface IPageStringProps {
 
 
 export const PageString = ({ pagination }: IPageStringProps) => {
-console.log('PageString',pagination)
-
-
   const count = pagination && pagination.getIn(['posts', 'count'])
   const perPage = pagination.getIn(['posts', 'perPage'])
   const currentPage = pagination.getIn(['posts', 'currentPage'])

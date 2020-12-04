@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import express, { Response } from 'express'
 import cookieSession from 'cookie-session';
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
@@ -29,51 +29,47 @@ passport.use('log-out', localLogOutStrategy);
 
 
 app.prepare().then(() => {
-  const server = express()
-  server.use(bodyParser.json({ limit: '10mb' }));
-  server.use(bodyParser.urlencoded({ extended: true }));
-  server.use(cookieParser());
-
-  server.use(cookieSession({
-    name: 'session',
-    secret: 'sss',
-    keys: [config.secretJwt],
-    maxAge: 24 * 60 * 60 * 1000,
-  }));
-
-
-  server.use(passport.initialize())
-  // server.use('/posts', authUser)
+	const server = express()
+	server.use(bodyParser.json({ limit: '10mb' }));
+	server.use(bodyParser.urlencoded({ extended: true }));
+	server.use(cookieParser());
+	server.use(cookieSession({
+		name: 'session',
+		secret: 'sss',
+		keys: [config.secretJwt],
+		maxAge: 24 * 60 * 60 * 1000,
+	}));
+	server.use(passport.initialize())
 
 
-  server.use(scopePerRequest(container))
-  const files = 'controllers/**/*.' + (config.dev ? 'ts' : 'js');
-  server.use(loadControllers(files, { cwd: __dirname }))
+	server.use(scopePerRequest(container))
+	const files = 'controllers/**/*.' + (config.dev ? 'ts' : 'js');
+	server.use(loadControllers(files, { cwd: __dirname }))
 
-  const Start = async () => {
-    try {
-      await mongoose.connect(config.mongoDbUrl, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-        dbName: "posts"
-      })
-      // @ts-ignore
-      server.listen(port, err => {
-        if (err) throw err
-          console.log(`> Server has started on http://localhost:${port}`)
-      })
-    } catch (err) {
-      console.log(`some error ${err}`)
-    }
-  }
+	const Start = async () => {
+		try {
+			await mongoose.connect(config.mongoDbUrl, {
+				useNewUrlParser: true,
+				useUnifiedTopology: true,
+				useCreateIndex: true,
+				useFindAndModify: false,
+				dbName: "posts"
+			})
+			// @ts-ignore
+			server.listen(port, err => {
+				if (err) throw err
+				console.log(`> Server has started on http://localhost:${port}`)
+			})
+		} catch (err) {
+			console.log(`some error ${err}`)
+		}
+	}
 
-  server.all('*', (req: any, res: Response) => {
-    return handle(req, res)
-  })
+	server.all('*', (req: any, res: Response) => {
+		return handle(req, res)
+	})
 
-  Start()
+	Start()
 })
 
 
