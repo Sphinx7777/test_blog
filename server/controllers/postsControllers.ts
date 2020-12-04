@@ -16,7 +16,7 @@ export default class PostsAPI {
 
   @route('/posts')
   @GET()
-  async getPosts(req: Request, res: Response) {
+  async getPosts(req: any, res: Response) {
     const pageNum = +req.query.pageNum >= 1 ? +req.query.pageNum : 1
     const perPage = +req.query.perPage ? +req.query.perPage : 5
     const filter = { title: req.query.title, fullName: req.query.fullName }
@@ -37,7 +37,7 @@ export default class PostsAPI {
 
   @route('/posts/one/:id')
   @GET()
-  async getOnePosts(req: Request, res: Response) {
+  async getOnePosts(req: any, res: Response) {
     try {
       const id = req.params.id
       const post = await this.postModel.findById(id).populate('authorId', '-password -token -postsId')
@@ -50,7 +50,7 @@ export default class PostsAPI {
   @route('/posts/add')
   @POST()
   @before(authUser)
-  async createPost(req: Request, res: Response) {
+  async createPost(req: any, res: Response) {
     try {
       const createdPost = await this.postModel.create(req.body);
       const response = await this.postModel.findOne({ _id: createdPost._id }).populate('authorId', '-password -token -postsId')
@@ -72,7 +72,7 @@ export default class PostsAPI {
   @route('/posts/update/:id')
   @POST()
   @before(authUser)
-  async updatePost(req: Request, res: Response) {
+  async updatePost(req: any, res: Response) {
     try {
       await this.postModel.findOneAndUpdate({ _id: req.params.id }, req.body.post);
       const updatePost = await this.postModel.findOne({ _id: req.params.id });
@@ -85,7 +85,7 @@ export default class PostsAPI {
   @route('/posts/del/:id')
   @DELETE()
   @before(authUser)
-  async deletePost(req: Request, res: Response) {
+  async deletePost(req: any, res: Response) {
     try {
       const deletePost = await this.postModel.findOne({ _id: req.params.id });
       const _id = deletePost.authorId

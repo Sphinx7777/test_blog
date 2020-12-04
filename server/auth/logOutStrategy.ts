@@ -1,5 +1,4 @@
 import passportLocal from 'passport-local';
-import { Request } from 'express';
 import UserModel, { UserSchema } from '../model/userModel';
 
 
@@ -9,7 +8,7 @@ const localLogOutStrategy = new passportLocal.Strategy({
     passwordField: 'password',
     session: false,
     passReqToCallback: true,
-}, (req: Request, userId: string, password: string, done: any) => {
+}, (req: any, userId: string, password: string, done: any) => {
     const _id = userId
     UserModel.findOne({ _id })
         .exec()

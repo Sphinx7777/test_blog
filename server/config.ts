@@ -1,8 +1,8 @@
 const isDev = process.env.NODE_ENV !== 'production'
 const config = {
-    mongoDbUrl: 'mongodb+srv://sfinx:333666@cluster0-qxxie.mongodb.net/',
+    mongoDbUrl: 'mongodb+srv://sfinx1331:sfinx1331@cluster0.cuuzt.mongodb.net/test_blog?retryWrites=true&w=majority',
     PORT: 3000,
-    secretJwt: 'тест авторизации',
+    secretJwt: 'test authorization',
     dev: isDev,
     saltRounds: 10,
     cookieKey: 'secret key'

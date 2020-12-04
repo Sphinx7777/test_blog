@@ -13,7 +13,7 @@ export default class UsersAPI {
 
   @route('/registration')
   @POST()
-  registrationUser(req: Request, res: Response) {
+  registrationUser(req: any, res: Response) {
     passport.authenticate('local-register', (error, user) => {
       if (error) {
         return res.status(500).json({ message: error.message, success: false })
@@ -33,7 +33,7 @@ export default class UsersAPI {
 
   @route('/emailValidate')
   @POST()
-  async emailValidate(req: Request, res: Response) {
+  async emailValidate(req: any, res: Response) {
 
     const email: string = req.body.email
     const emailValid = await this.userModel.findOne({ email })
@@ -46,7 +46,7 @@ export default class UsersAPI {
 
   @route('/auth')
   @POST()
-  signInUser(req: Request, res: Response) {
+  signInUser(req: any, res: Response) {
     passport.authenticate('local-signIn', (error, identity) => {
       if (error) {
         return res.status(500).json({message: error.message, success: false  })
@@ -64,7 +64,7 @@ export default class UsersAPI {
 
   @route('/logout')
   @POST()
-  logOutUser(req: Request, res: Response) {
+  logOutUser(req: any, res: Response) {
     passport.authenticate('log-out', (error, guest) => {
       if (error) {
         return res.status(500).json({ message: error.message, success: false })

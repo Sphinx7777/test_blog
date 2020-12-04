@@ -3,7 +3,7 @@ import passport from 'passport';
 
 
 
-export function authUser(req: Request, res: Response, next: any) {
+export function authUser(req: any, res: Response, next: any) {
   passport.authenticate('jwt-strategy', (error, identity) => {
     if (identity) {
       next()

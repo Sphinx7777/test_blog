@@ -9,7 +9,7 @@ const localRegisterStrategy = new passportLocal.Strategy({
     passwordField: 'password',
     session: false,
     passReqToCallback: true,
-}, (req: Request, email: string, password: string, done: any) => {
+}, (req: any, email: string, password: string, done: any) => {
     const userData = {
         email: email.trim().toLowerCase(),
         password: password.trim(),

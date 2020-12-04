@@ -1,5 +1,4 @@
 import passportLocal from 'passport-local';
-import { Request } from 'express';
 import UserModel, { UserSchema } from '../model/userModel';
 import jwt from 'jsonwebtoken'
 import config from '../config'
@@ -10,7 +9,7 @@ const localSignInStrategy = new passportLocal.Strategy({
     passwordField: 'password',
     session: false,
     passReqToCallback: true,
-}, (req: Request, email: string, password: string, done: any) => {
+}, (req: any, email: string, password: string, done: any) => {
     UserModel.findOne({ email })
         .exec()
         .then(async (user: any) => {

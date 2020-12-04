@@ -38,7 +38,7 @@ class Jwt {
     }
   }
 
-  public getJwtFromRequest(req: Request) {
+  public getJwtFromRequest(req: any) {
 
     this._request = req;
     const getToken = ExtractJwt.fromAuthHeaderAsBearerToken();

@@ -90,7 +90,7 @@ export class UserSchema extends Typegoose {
    * initSessions
    */
   @instanceMethod
-  public initSession(req: Request) {
+  public initSession(req: any) {
     req.session.userId = this._id;
     req.session.firstName = this.firstName;
     req.session.lastName = this.lastName;

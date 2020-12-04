@@ -12,7 +12,6 @@ import localSignInStrategy from './auth/localSignInStrategy'
 import jwtStrategy from './auth/jwtStrategy'
 import cookieParser from 'cookie-parser'
 import localLogOutStrategy from './auth/logOutStrategy';
-// import { authUser } from './middleware/authUser';
 
 
 
@@ -60,17 +59,17 @@ app.prepare().then(() => {
         useFindAndModify: false,
         dbName: "posts"
       })
+      // @ts-ignore
       server.listen(port, err => {
         if (err) throw err
-
-        console.log(`> Server has started on http://localhost:${port}`)
+          console.log(`> Server has started on http://localhost:${port}`)
       })
     } catch (err) {
       console.log(`some error ${err}`)
     }
   }
 
-  server.all('*', (req: Request, res: Response) => {
+  server.all('*', (req: any, res: Response) => {
     return handle(req, res)
   })
 

@@ -59,6 +59,7 @@
     "validator": "^12.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.9",
     "@types/bcrypt": "^3.0.0",
     "@types/cookie-session": "^2.0.37",
     "@types/express-session": "^1.15.16",
