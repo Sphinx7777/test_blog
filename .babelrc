@@ -1,0 +1,35 @@
+{
+    "plugins": [
+    [
+    "module-resolver",
+    {
+    "root": ["."],
+    "alias": {
+    "src": "./src",
+    "styles": "./styles",
+    "wavesurfer.js": "./wavesurfer.js"
+    },
+    "extensions": [ ".wasm", ".mjs", ".js", ".jsx", ".json", ".ts", ".tsx" ],
+    "cwd": "babelrc"
+    }
+    ],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "transform-class-properties",
+    [
+    "import",
+    {
+    "libraryName": "antd",
+    "style": "css"
+    }
+    ]
+    ],
+    "presets": [
+    ["next/babel",
+    {
+    "preset-env": { "targets": { "node": "current" } }
+    }
+    ]
+    ],
+    "ignore": []
+    
+    }
