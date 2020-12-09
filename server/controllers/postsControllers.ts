@@ -3,6 +3,9 @@ import { route, GET, POST, DELETE, before } from 'awilix-express'
 import PostModel, { PostSchema, Post } from '../model/postModel';
 import UserModel, { User } from '../model/userModel';
 import { authUser } from '../middleware/authUser';
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+const creds = require('../client_secret.json');
+import asana from 'asana';
 
 
 @route('/api/v.1.0')
@@ -38,6 +41,72 @@ export default class PostsAPI {
   @route('/posts/one/:id')
   @GET()
   async getOnePosts(req: any, res: Response) {
+    const doc = new GoogleSpreadsheet('1fO4oGQpS6yIENQECgdFzHXW4iS2AtXH0BYyWG7Pi9Mw');
+
+    await doc.useServiceAccountAuth(creds)
+
+    await doc.loadInfo()
+    const sheet = doc.sheetsByIndex[0]
+    const rows = await sheet.getRows({
+      limit: 50,
+      offset: 1
+    })
+    rows.forEach(r => {
+      console.log('getOnePosts',`Hours: ${r.Hours} Tasks: ${r.Tasks}` )
+      if (r.Hours === '666') {
+      r.Hours = '333'
+      r.save()
+      }
+      if (r.Tasks ==='Donate') {
+        r.delete()
+      }
+    })
+
+
+    const client = asana.Client.create().useAccessToken('1/1166882439558482:541134aff3e6d6b1606269bb4f8c7315');
+    client.users.me()
+    .then((user: any) => {
+      const userId = user.gid;
+      // The user's "default" workspace is the first one in the list, though
+      // any user can have multiple workspaces so you can't always assume this
+      // is the one you want to work with.
+      const workspaceId = user.workspaces[0].gid;
+      client.users.findById(userId)
+    .then((result: any) => {
+        console.log('findById', result);
+    });
+    client.users.findAll(workspaceId)
+    .then((result: any) => {
+        console.log('findAll', result);
+    });
+      client.users.findByWorkspace(workspaceId)
+      .then((result: any) => {
+          console.log('getUsersForWorkspace', result);
+      });
+      console.log('response.user', user)
+      return client.tasks.findAll({
+        assignee: userId,
+        workspace: workspaceId,
+        completed_since: 'now',
+        opt_fields: 'id,name,assignee_status,completed'
+      });
+    })
+    .then((response: any) => {
+      // There may be more pages of data, we could stream or return a promise
+      // to request those here - for now, let's just return the first page
+      // of items.
+      
+      console.log('response.data', response.data) ;
+    })
+    // client.tasks.findByTag(tagId).then(function(collection: any) {
+    //   console.log(collection.data);
+    //   // [ .. array of up to 5 task objects .. ]
+    // });
+
+
+
+
+
     try {
       const id = req.params.id
       const post = await this.postModel.findById(id).populate('authorId', '-password -token -postsId')
