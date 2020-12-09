@@ -22,8 +22,10 @@ export default class RenderAPI {
     @GET()
     async getView(req: any, res: Response) {
         const id = req.params.id
+        console.log('id', id)
         const posts: any = await this.postModel.findById(id).populate('authorId','-password -token -postsId');
-        return app.render(req, res, '/view', {data: posts})
+        console.log('posts', posts)
+        return app.render(req, res, '/view', {data: [posts]})
     }
 
 

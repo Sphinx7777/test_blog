@@ -19,7 +19,7 @@ const AuthForm = (props: IAuthFormProps & InjectedFormProps) => {
   submitSucceeded && myPromise(1000).then((res) => Router.replace('/posts'));
 
   return (
-    <div className="bg-blue-200 max-w-4xl mt-4 mx-auto border-2 border-blue-600 rounded-lg overflow-hidden p-5">
+    <div className="bg-blue-200 max-w-4xl mt-4 mx-auto border-2 border-blue-600 p-5">
       <form onSubmit={handleSubmit(submit)} className="flex flex-col text-center">
         <Field
           name="email"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'next/router'
 import { compose } from 'redux';
 import { useDispatch, connect } from 'react-redux'

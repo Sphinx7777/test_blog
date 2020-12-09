@@ -5,6 +5,23 @@ import { InputComponent } from '../renderFields';
 import '../../../styles/style.scss'
 import formValidator from '../formValidator';
 import Link from 'next/link';
+import Button from '@material-ui/core/Button';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
+import 'date-fns';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import { Checkbox, ListItemText } from '@material-ui/core';
 
 interface IAuthFormProps {
   onSubmit?: () => {};
@@ -36,6 +53,12 @@ const RegisterForm = (props: IAuthFormProps & InjectedFormProps) => {
         component={InputComponent}
         label="Email"
         maxLength="100"
+      />
+            <Field
+        name="datePicker"
+        type="text"
+        component={picker}
+        label="Date Picker"
       />
       <Field
         name="password"
@@ -91,3 +114,28 @@ export default reduxForm({
   asyncValidate,
   asyncBlurFields: ['email']
 })(RegisterForm)
+
+const picker = () => {
+  const [selectedDate, setSelectedDate] = React.useState(new Date().toLocaleDateString());
+  const handleDateChange = (date: any) => {
+      setSelectedDate(date);
+  };
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <Grid container justify="space-around">
+        <KeyboardDatePicker
+            margin="normal"
+            id="date-picker-dialog"
+            label="Date picker dialog"
+            format="MM/dd/yyyy"
+            name='datePicker'
+            value={selectedDate}
+            onChange={handleDateChange}
+            KeyboardButtonProps={{
+                'aria-label': 'change date',
+            }}
+        />
+    </Grid>
+</MuiPickersUtilsProvider>
+  )
+}

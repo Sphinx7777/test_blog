@@ -30,7 +30,7 @@ class PostsSagas extends Entity {
   public * getAllPosts() {
     while (true) {
       const data = yield take(GET_ALL_POST)
-      //console.log('getAllPostsSAGA',data)
+      console.log('getAllPostsSAGA',data)
 
       const toFormat: any = {
         pathname: this.uri
@@ -40,7 +40,8 @@ class PostsSagas extends Entity {
         toFormat.query[data.data.name] = data.data.value;
       }
       const urlFormatted = url.format(toFormat);
-      yield fork(this.xRead, urlFormatted)
+      const data2 = yield fork(this.xRead, urlFormatted)
+      console.log('getAllPostsSAGA',data2)
     }
   }
 
@@ -54,10 +55,10 @@ class PostsSagas extends Entity {
   public * getOnePost() {
     while (true) {
       const data = yield take(GET_ONE_POST)
-      const response = yield select((state: any) => state.entities.getIn(['posts', data.id]))
-      if (!response) {
+      // const response = yield select((state: any) => state.entities.getIn(['posts', data.id]))
+      // if (!response) {
         yield fork(this.xRead, `${this.uri}/one/${data.id}`)
-      }
+      // }
     }
   }
 

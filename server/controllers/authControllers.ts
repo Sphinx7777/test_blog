@@ -4,6 +4,7 @@ import passport from 'passport';
 import { Request, Response } from 'express';
 
 
+
 @route('/api/v.1.0/users')
 export default class UsersAPI {
   public userModel: User

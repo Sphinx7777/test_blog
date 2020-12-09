@@ -16,12 +16,13 @@ const Register = ({ setRegistrationAC }: IRegisterProps) => {
     data.photoUrl = "https://i.ibb.co/nb8ftzH/foto.jpg"
     //data.photoUrl = femaleAvatar
     //data.photoUrl = null
+    console.log('onSubmitRegister', data)
     dispatch(setRegistrationAC({ data }))
   }
   const initialValues = {email: '',validationUrl: 'users/emailValidate'}
 
   return (
-    <div className='bg-blue-200 max-w-4xl mt-4 mx-auto border-2 border-blue-600 rounded-lg overflow-hidden'>
+    <div className='bg-blue-200 max-w-4xl mt-4 mx-auto border-2 border-blue-600'>
       <RegisterForm onSubmit={onSubmitRegister} initialValues={initialValues}/>
     </div>
   )
