@@ -30,8 +30,6 @@ class PostsSagas extends Entity {
   public * getAllPosts() {
     while (true) {
       const data = yield take(GET_ALL_POST)
-      console.log('getAllPostsSAGA',data)
-
       const toFormat: any = {
         pathname: this.uri
       };
@@ -41,7 +39,6 @@ class PostsSagas extends Entity {
       }
       const urlFormatted = url.format(toFormat);
       const data2 = yield fork(this.xRead, urlFormatted)
-      console.log('getAllPostsSAGA',data2)
     }
   }
 
@@ -57,7 +54,7 @@ class PostsSagas extends Entity {
       const data = yield take(GET_ONE_POST)
       // const response = yield select((state: any) => state.entities.getIn(['posts', data.id]))
       // if (!response) {
-        yield fork(this.xRead, `${this.uri}/one/${data.id}`)
+      yield fork(this.xRead, `${this.uri}/one/${data.id}`)
       // }
     }
   }
@@ -85,7 +82,7 @@ class PostsSagas extends Entity {
     }
   }
 
-    // public * fetchItems(data: any) {
+  // public * fetchItems(data: any) {
   //   const func = this.request('/api/md/poem/get-all', {method: 'POST'}).bind(this);
   //   yield call(this.pageEntity,func, data);
   //   }

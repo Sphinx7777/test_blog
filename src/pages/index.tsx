@@ -88,6 +88,7 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
     const handleDateChange = (date: any) => {
         setSelectedDate(date);
     };
+
     return (
         <div className='px-4 flex flex-col items-start lg:flex-row w-full lg:items-center' >
             <FormControl
