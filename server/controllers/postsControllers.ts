@@ -43,37 +43,64 @@ export default class PostsAPI {
 	@GET()
 	async getOnePosts(req: any, res: Response) {
 
-		const doc = new GoogleSpreadsheet('1NmtWT2KuBs6sXego4sJDv3tfj4DsUm7wvSjGJkLk9gw');
 
-		await doc.useServiceAccountAuth({
-			client_email: "shetts@modern-photon-298110.iam.gserviceaccount.com",
-			private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDI0zy8RG0HTRaK\n0xkoZoeZy+ca/DOhZfBkhQ1JqYn6Wn+53uWAa8bjHizHt0NOp3CW2kiAtE6jwcIH\nO9mS4LUWRyJLuECNXUM0uBV9TcvvHHRYkKkv2NHsbYq7Feb5yaWublNz+2V3TGSB\nQE6Rjwxxjt40fD0cKpO2RVkBLEF4KZ4RQOhFY+fuTLj0VJjZV0u1EfTp26U+Ov8P\n8m9Cv4OXuszPNOV/2bOVU8T2dvMyNMT6Jct8WzWLQICwbi3FGXMlWHuEUOeCRXo9\nI9ETYOhB4nWBqv3mWP8c+MPTdhkw7/ZUiJV5g9s0pRpY5vrTNJI3sq04fyQLGAY8\nZwlw/N01AgMBAAECggEAVuzP+jGn+6QLYNWUqx8ODKzsgIqvkmm8TtYkdUD0HzAy\n3vIy5o5ADSiPe3bApHfnTPR4s3TYIRuJ73WhbGjlGRp7Jsk+77FxmI0hiBY3cm0f\nkwIyqSoxWyPjC62kR3RXyZOpfadQOP4Q9r0uBOUlHrYXSiKIlPt86kVEDDTqtaaR\ngjpMkSrXxJw2qDUkIVXxqjk9/JzmRRzIsZkErGsJUAbOc1mB0v5OL93dslsHPM4w\nlMbD0j+v833BQ92XCxLVUu3NtHCEanfy4R94TWxvlH8hO10McUhWUlhymgndZiXp\nq/LurIzi4TCyR0Snobcc/xBBbcn4c1HkfSoDDZCddQKBgQDq9Tpk554nkLejXGXA\nDUESX1+Zn8N5lSmrZWGO2qAQxUNNQjmbfQ3yuXwjyXk7HE5CKTilb0QSffJ0egGY\n4YE9NM9TB4ktBKhbGSdvJ6RWAb5RoGpp1htye60OYO0YgZFITvkc68AATQe+2etw\njk4Xa6/pm8w4DbP7w7yWiH4fRwKBgQDaz3Z0rdpRqoRZsrhBEmM2axX1ebx0c9cc\nbrVjNsUkXvghUuG9LY/rN/JUBc8TIs09HFLStYeG8X5pns27X3Lq5wXRXvzymwfT\nNQoGGMfVe/Vp0yvgtMT1IzA/W0P/MiRfp1IGqMnhL2Zib61xP+vJ6ep7y06lzZfz\ns6xHZUD1owKBgBY0yyoSQf5XTSPhbbRzDD1iSjTIxr7M/D04vbm0rAApxKyen7c0\nYIcaRMNVHWIa0MKsBrCMDZD52lpr1Y7PcVmJjja4tZxNnmPNws5cnsmKLKSmVqhe\nFgYB7l83hfEU/dgprp2vIlxk62B8VCY1LOhFw0B++xQpJ2OaIk7P46utAoGBAILe\nRG3isUnY35G6Z6NbuQUKJTcNWV6ZDhZOTKSLVHu9ZVCg/qyj/IjljEUeuEwsq24a\na5rkwas+8ql/NnMT0mqWRA+GbWk4ugRjm5wr5BFWM2DY0UxzMb2gDzJFhrSyK7ke\nHNwoxZ2uOOE1BBpQ7dh01C64WVCnV3OFiculzqVbAoGBAMoUSB58F9MqwlTIVtyW\nrzY8P/KjLBu5hqNbvCmymIH0yyt1FOeVEb11wes1NRtjzyBENZ90zy7wtv+s/jQ1\nScvrB5V7FoE2En+H6lP6VZMmV58M4OI52K8UGx+bETlOE3F/j4yNsAA6/TWTvhiN\nHH+dvip+IDOR3DQ4u2X9hVHp\n-----END PRIVATE KEY-----\n",
-		})
 
-		await doc.loadInfo()
-		const sheet = doc.sheetsByIndex[0]
-		const rows = await sheet.getRows({
-			limit: 15000,
-            offset: 0
-		})
-		let data: any[] = []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
-		rows.forEach(r => {
-			const item = {
-				phone: r['tel nr.'] || '',
-				email: r['El. paštas'] || '',
-				groupe: r['vardas'] || '',
-				language: r['Kalba'] || '',
-				reference: r['Kreipinys'] || '',
-				details: r['skambino del'] || ''
-			}
-			console.log('getOneRow_DATA=', r.rowIndex)
-		data = [...data, item]
-		})
-		console.log('rows', rows[2].a1Range)
+
+		// const doc = new GoogleSpreadsheet('1fO4oGQpS6yIENQECgdFzHXW4iS2AtXH0BYyWG7Pi9Mw');
+
+		// await doc.useServiceAccountAuth({
+		// 	client_email: "shetts@modern-photon-298110.iam.gserviceaccount.com",
+		// 	private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDI0zy8RG0HTRaK\n0xkoZoeZy+ca/DOhZfBkhQ1JqYn6Wn+53uWAa8bjHizHt0NOp3CW2kiAtE6jwcIH\nO9mS4LUWRyJLuECNXUM0uBV9TcvvHHRYkKkv2NHsbYq7Feb5yaWublNz+2V3TGSB\nQE6Rjwxxjt40fD0cKpO2RVkBLEF4KZ4RQOhFY+fuTLj0VJjZV0u1EfTp26U+Ov8P\n8m9Cv4OXuszPNOV/2bOVU8T2dvMyNMT6Jct8WzWLQICwbi3FGXMlWHuEUOeCRXo9\nI9ETYOhB4nWBqv3mWP8c+MPTdhkw7/ZUiJV5g9s0pRpY5vrTNJI3sq04fyQLGAY8\nZwlw/N01AgMBAAECggEAVuzP+jGn+6QLYNWUqx8ODKzsgIqvkmm8TtYkdUD0HzAy\n3vIy5o5ADSiPe3bApHfnTPR4s3TYIRuJ73WhbGjlGRp7Jsk+77FxmI0hiBY3cm0f\nkwIyqSoxWyPjC62kR3RXyZOpfadQOP4Q9r0uBOUlHrYXSiKIlPt86kVEDDTqtaaR\ngjpMkSrXxJw2qDUkIVXxqjk9/JzmRRzIsZkErGsJUAbOc1mB0v5OL93dslsHPM4w\nlMbD0j+v833BQ92XCxLVUu3NtHCEanfy4R94TWxvlH8hO10McUhWUlhymgndZiXp\nq/LurIzi4TCyR0Snobcc/xBBbcn4c1HkfSoDDZCddQKBgQDq9Tpk554nkLejXGXA\nDUESX1+Zn8N5lSmrZWGO2qAQxUNNQjmbfQ3yuXwjyXk7HE5CKTilb0QSffJ0egGY\n4YE9NM9TB4ktBKhbGSdvJ6RWAb5RoGpp1htye60OYO0YgZFITvkc68AATQe+2etw\njk4Xa6/pm8w4DbP7w7yWiH4fRwKBgQDaz3Z0rdpRqoRZsrhBEmM2axX1ebx0c9cc\nbrVjNsUkXvghUuG9LY/rN/JUBc8TIs09HFLStYeG8X5pns27X3Lq5wXRXvzymwfT\nNQoGGMfVe/Vp0yvgtMT1IzA/W0P/MiRfp1IGqMnhL2Zib61xP+vJ6ep7y06lzZfz\ns6xHZUD1owKBgBY0yyoSQf5XTSPhbbRzDD1iSjTIxr7M/D04vbm0rAApxKyen7c0\nYIcaRMNVHWIa0MKsBrCMDZD52lpr1Y7PcVmJjja4tZxNnmPNws5cnsmKLKSmVqhe\nFgYB7l83hfEU/dgprp2vIlxk62B8VCY1LOhFw0B++xQpJ2OaIk7P46utAoGBAILe\nRG3isUnY35G6Z6NbuQUKJTcNWV6ZDhZOTKSLVHu9ZVCg/qyj/IjljEUeuEwsq24a\na5rkwas+8ql/NnMT0mqWRA+GbWk4ugRjm5wr5BFWM2DY0UxzMb2gDzJFhrSyK7ke\nHNwoxZ2uOOE1BBpQ7dh01C64WVCnV3OFiculzqVbAoGBAMoUSB58F9MqwlTIVtyW\nrzY8P/KjLBu5hqNbvCmymIH0yyt1FOeVEb11wes1NRtjzyBENZ90zy7wtv+s/jQ1\nScvrB5V7FoE2En+H6lP6VZMmV58M4OI52K8UGx+bETlOE3F/j4yNsAA6/TWTvhiN\nHH+dvip+IDOR3DQ4u2X9hVHp\n-----END PRIVATE KEY-----\n",
+		// })
+
+		// await doc.loadInfo()
+		// const sheet = doc.sheetsByIndex[0]
+		// const rows = await sheet.getRows({
+		// 	limit: 15000,
+        //     offset: 0
+		// })
+		// let data: any[] = []
+		
+		// rows.forEach(r => {
+		// 	const item = {
+		// 		phone: r['tel nr.'] || '',
+		// 		email: r['El. paštas'] || '',
+		// 		groupe: r['vardas'] || '',
+		// 		language: r['Kalba'] || '',
+		// 		reference: r['Kreipinys'] || '',
+		// 		details: r['skambino del'] || ''
+		// 	}
+		// 	console.log('getOneRow_DATA=', r.rowIndex)
+		// data = [...data, item]
+		// })
+		// console.log('rows', rows[2].a1Range)
 		// await sheet.loadCells('A1:V4000')
 		// const c6 = sheet.getCellByA1('C6')
-		// const a1 = sheet.getCell(0, 0);
         // console.log('6666', c6, '1111', a1.formattedValue)
 		// console.log('SSSSSS', sheet.title, sheet.columnCount, sheet.rowCount, sheet.columnCount, doc.title, doc.sheetCount, 'items==', data.length, sheet.cellStats)
 		// @ts-ignore
@@ -84,18 +111,24 @@ export default class PostsAPI {
 		// console.log('response', response2._id, 'search' , search)
 
 
-		const headerValues = 
-		[
-			'Grupė',          'Data',
-			'Kalba',          'Kreipinys',
-			'El. paštas',     'Telefonas',
-			'Detalės',        'Segmentas',
-			'High Net Worth', 'Member Rating',
-			'Skambinti kas',  'Komentarai1',
-			'Komentarai2',    'Komentarai3',
-			'Komentarai4',    'Emails sent',
-			'Opened',         'Clicked'
-		]
+		// const headerValues = 
+		// [
+		// 	'Grupė',          'Data',
+		// 	'Kalba',          'Kreipinys',
+		// 	'El. paštas',     'Telefonas',
+		// 	'Detalės',        'Segmentas',
+		// 	'High Net Worth', 'Member Rating',
+		// 	'Skambinti kas',  'Komentarai1',
+		// 	'Komentarai2',    'Komentarai3',
+		// 	'Komentarai4',    'Emails sent',
+		// 	'Opened',         'Clicked'
+		// ]
+
+
+// 		await sheet.loadCells('A2:B4')
+
+// const c6 = sheet.getCellByA1('C6')
+// console.log('loadCells', sheet.cellStats, c6, c6.value, c6.formattedValue);
 
 
 
