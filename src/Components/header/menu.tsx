@@ -13,11 +13,11 @@ const Menu: React.FunctionComponent<IMenuProps> = ({ authUser, logOutSubmit}) =>
 
     <div className='hidden sm:flex flex-wrap justify-between items-center'>
       <div className='flex flex-wrap  items-center p-1'>
-        <Link href="/">
+        {/* <Link href="/">
           <a className='border-2 border-white rounded-lg px-1 mr-2'>Main</a>
-        </Link>
+        </Link> */}
         <Link href="/posts">
-          <a className='border-2 border-white rounded-lg px-1'>Blog</a>
+          <a className='border-2 border-white rounded-lg px-1'>Test google and asana sheet</a>
         </Link>
       </div>
       <div className='flex flex-wrap items-center p-1'>
@@ -30,7 +30,7 @@ const Menu: React.FunctionComponent<IMenuProps> = ({ authUser, logOutSubmit}) =>
             </button>
             :
             <div className='flex flex-wrap items-center p-1'>
-              <Link href='/register'>
+              {/* <Link href='/register'>
                 <a className='border-2 border-white rounded-lg px-2 ml-2'>
                   <p>Registration</p>
                 </a>
@@ -39,7 +39,7 @@ const Menu: React.FunctionComponent<IMenuProps> = ({ authUser, logOutSubmit}) =>
                 <a className='border-2 border-white rounded-lg px-2 ml-2'>
                   <p>Sign in</p>
                 </a>
-              </Link>
+              </Link> */}
             </div>
         }
       </div>

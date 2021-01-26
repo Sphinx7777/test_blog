@@ -18,13 +18,11 @@ export default class RenderAPI {
         return app.render(req, res, '/index', req.query)
     }
 
-    @route('/view/:id')
+    @route('/view')
     @GET()
     async getView(req: any, res: Response) {
-        const id = req.params.id
-        console.log('id', id)
+        const id = req.params.id || req.query.id
         const posts: any = await this.postModel.findById(id).populate('authorId','-password -token -postsId');
-        console.log('posts', posts)
         return app.render(req, res, '/view', {data: [posts]})
     }
 

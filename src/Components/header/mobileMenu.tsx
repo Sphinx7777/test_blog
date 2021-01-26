@@ -13,14 +13,14 @@ const MobileMenu: React.FunctionComponent<IMobileMenuProps> = ({ authUser, logOu
 
     <div className='z-20 text-black text-center  bg-white border-2 border-black flex-col absolute top-2 right-0 rounded-lg sm:hidden '>
       <div className='flex flex-wrap flex-col mb-2'>
-        <Link href="/">
+        {/* <Link href="/">
           <a className='border-b-2 border-black rounded-lg mb-2 p-2'>Main</a>
-        </Link>
+        </Link> */}
         <Link href="/posts">
-          <a className='border-b-2 border-black rounded-lg p-2'>Blog</a>
+          <a className='border-b-2 border-black rounded-lg p-2'>Test google and asana sheet</a>
         </Link>
       </div>
-      <div className='flex flex-wrap'>
+      {/* <div className='flex flex-wrap'>
         {
           authUser && authUser.get('role') === 'user'
             ?
@@ -49,7 +49,7 @@ const MobileMenu: React.FunctionComponent<IMobileMenuProps> = ({ authUser, logOu
               </Link>
             </div>
         }
-      </div>
+      </div> */}
     </div>
   )
 }

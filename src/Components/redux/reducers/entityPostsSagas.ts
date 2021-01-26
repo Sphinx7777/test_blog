@@ -30,6 +30,7 @@ class PostsSagas extends Entity {
   public * getAllPosts() {
     while (true) {
       const data = yield take(GET_ALL_POST)
+      console.log('getAllPosts', data)
       const toFormat: any = {
         pathname: this.uri
       };
@@ -38,7 +39,8 @@ class PostsSagas extends Entity {
         toFormat.query[data.data.name] = data.data.value;
       }
       const urlFormatted = url.format(toFormat);
-      const data2 = yield fork(this.xRead, urlFormatted)
+      const data2 = yield fork(this.xRead, `${urlFormatted}`)
+      console.log('getAllPosts__222', data2, 'urlFormatted', urlFormatted)
     }
   }
 

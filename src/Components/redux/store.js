@@ -58,7 +58,7 @@ export default (initialState, options) => {
         await store.runSaga();
         if (ctx.hasOwnProperty('query')) {
             const body = JSON.stringify(ctx.query);
-            if (!body.includes('css') && !body.includes('chunk')) {
+            if (body && !body.includes('css') && !body.includes('chunk')) {
                 tasks(store.dispatch);
             }
         } else {

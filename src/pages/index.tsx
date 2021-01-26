@@ -91,7 +91,7 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
 
     return (
         <div className='px-4 flex flex-col items-start lg:flex-row w-full lg:items-center' >
-            <FormControl
+            {/* <FormControl
                 style={{
                     marginTop: 10,
                     marginRight: 20,
@@ -116,11 +116,11 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
                         </MenuItem>
                     ))}
                 </Select>
-            </FormControl>
+            </FormControl> */}
             <FormControl    style={{
                     minWidth: 100,
                 }}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <Grid container justify="space-around">
                         <KeyboardDatePicker
                             margin="normal"
@@ -135,7 +135,7 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
                             }}
                         />
                     </Grid>
-                </MuiPickersUtilsProvider>
+                </MuiPickersUtilsProvider> */}
             </FormControl>
         </div>
     );
