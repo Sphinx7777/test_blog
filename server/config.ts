@@ -1,6 +1,7 @@
 const isDev = process.env.NODE_ENV !== 'production'
 const config = {
-    mongoDbUrl: 'mongodb+srv://sfinx1331:sfinx1331@cluster0.cuuzt.mongodb.net/test_blog?retryWrites=true&w=majority',
+    // mongoDbUrl: 'mongodb+srv://sfinx1331:sfinx1331@cluster0.cuuzt.mongodb.net/test_blog?retryWrites=true&w=majority',
+    mongoDbUrl: 'mongodb://localhost:27017/Signal',
     PORT: 3000,
     secretJwt: 'test authorization',
     dev: isDev,
