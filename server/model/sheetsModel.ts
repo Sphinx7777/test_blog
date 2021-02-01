@@ -136,7 +136,13 @@ export class SheetsSchema extends Typegoose {
     public taskAssigneeStatus?: any;
 
     @prop()
-    public coordinates?: any;
+    public allBrokersCoordinates?: any;
+
+    @prop()
+    public teamCoordinates?: any;
+
+    @prop()
+    public dataType?: any;
 }
 
 
