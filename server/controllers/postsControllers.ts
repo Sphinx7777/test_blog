@@ -235,7 +235,7 @@ const createUpdateDataBase = async (data: any[], searchType: string) => {
 			res2 = await SheetsModel.findOne({ email: element.email })
 		}
 		if (res && res !== null) {
-			if (res.phone) {
+			if (res.phone && res.phone === element.phone) {
 				delete element.phone
 			}
 			element.searchType = (res.searchType && res.searchType.length > 0 && !res.searchType.includes(searchType)) ? `${res.searchType},${searchType}` : searchType
@@ -244,10 +244,10 @@ const createUpdateDataBase = async (data: any[], searchType: string) => {
 			response = response.concat(['Update'])
 		}
 		if (res2 && res2 !== null) {
-			if (res2.email && res2.email > 0) {
+			if (res2.email && res2.email > 0 && res2.email === element.email) {
 				delete element.email
 			}
-			if (res2.phone && res2.phone > 0) {
+			if (res2.phone && res2.phone > 0 && res2.phone === element.phone) {
 				delete element.phone
 			}
 			element.searchType = (res2.searchType && res2.searchType.length > 0 && !res2.searchType.includes(searchType)) ? `${res2.searchType},${searchType}` : searchType
@@ -255,7 +255,7 @@ const createUpdateDataBase = async (data: any[], searchType: string) => {
 			await res2.save()
 			response = response.concat(['Update'])
 		}
-		if (res === null && res2 === null) {
+		if ((!res && !res) || (res === null && res2 === null)) {
 			element.searchType = searchType
 			await SheetsModel.create(element)
 			response = response.concat(['Create'])
@@ -393,7 +393,6 @@ export default class PostsAPI {
 				return;
 			} else {
 				console.log('Google connected !!!');
-				console.time('Google DBX')
 				createDataBase(client)
 			}
 		});
@@ -414,8 +413,8 @@ export default class PostsAPI {
 			}
 			try {
 
-
-
+				console.time('CREATED_DATA')
+				console.time('get_Google DBX')
 				const teamDatabaseResponse = await gsApi.spreadsheets.values.get(teamDatabaseOptions)
 				const allBrokersDatabaseResponse = await gsApi.spreadsheets.values.get(allBrokersDatabaseOptions)
 
@@ -435,9 +434,9 @@ export default class PostsAPI {
 						: []
 
 
-				console.timeEnd('Google DBX')
+				console.timeEnd('get_Google DBX')
 
-				console.time('CREATED_DATA')
+				
 
 				console.time('GET_SET_ASANA_DATA')
 				const asanaData = await getAsanaDate()
