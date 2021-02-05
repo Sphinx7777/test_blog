@@ -312,7 +312,8 @@ const asanaRegSearch = async (workspaceId: any, userId: any, asanaClient: asana.
 				taskCompleted: element.completed,
 				taskModifiedAt: element.modified_at,
 				taskCompletedAt: element.completed_at,
-				taskAssigneeStatus: element.assignee_status
+				taskAssigneeStatus: element.assignee_status,
+				dataType: 'teamData',
 			}
 			if ((doc.phone && doc.phone.length > 0) || (doc.email && doc.email.length > 0)) {
 				doc = { ...doc, ...addDock }
@@ -465,6 +466,7 @@ export default class PostsAPI {
 						calledAbout: element[18],
 						agentID: element[19],
 						allBrokersBaseDate: element[20],
+						dataType: 'allBrokersData',
 						allBrokersCoordinates: getAllBrokerCoordinates(i)
 					}
 					allBrokersDocks = [...allBrokersDocks, doc]
@@ -503,6 +505,7 @@ export default class PostsAPI {
 						opened2020Q4: element[19],
 						clickedInvest: element[20],
 						clickedSell: element[21],
+						dataType: 'teamData',
 						teamCoordinates: getTeamCoordinates(i)
 					}
 					teamDocks = [...teamDocks, doc]
