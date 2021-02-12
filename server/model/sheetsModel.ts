@@ -139,6 +139,12 @@ export class SheetsSchema extends Typegoose {
     public allBrokersCoordinates?: any;
 
     @prop()
+    public teamDate?: any;
+
+    @prop()
+    public allBrokersBaseDate?: any;
+
+    @prop()
     public teamCoordinates?: any;
 
     @prop()

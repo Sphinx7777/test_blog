@@ -220,9 +220,6 @@ const getTeamCoordinates = (i: number) => {
 }
 
 const createUpdateDataBase = async (data: any[], searchType: string) => {
-
-
-
 	let response: any[] = []
 	for (let i = 0; i < data.length; i++) {
 		const element = data[i];
@@ -313,7 +310,7 @@ const asanaRegSearch = async (workspaceId: any, userId: any, asanaClient: asana.
 				taskModifiedAt: element.modified_at,
 				taskCompletedAt: element.completed_at,
 				taskAssigneeStatus: element.assignee_status,
-				dataType: 'teamData',
+				dataType: 'asanaData',
 			}
 			if ((doc.phone && doc.phone.length > 0) || (doc.email && doc.email.length > 0)) {
 				doc = { ...doc, ...addDock }
